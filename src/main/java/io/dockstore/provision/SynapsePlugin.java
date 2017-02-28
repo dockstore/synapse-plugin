@@ -19,6 +19,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import com.google.common.collect.Lists;
@@ -67,7 +68,6 @@ public class SynapsePlugin extends Plugin {
 
         public boolean downloadFrom(String sourcePath, Path destination) {
             SynapseClient synapseClient = new SynapseClientImpl();
-
             try {
                 String synapseKey = config.get("synapse-api-key");
                 String synapseUserName = config.get("synapse-user-name");
@@ -82,7 +82,8 @@ public class SynapsePlugin extends Plugin {
             }
         }
 
-        public boolean uploadTo(String destPath, Path sourceFile, String metadata) {
+        public boolean uploadTo(String destPath, Path sourceFile, Optional<String> metadata) {
+            // TODO: hook up metadata
             throw new UnsupportedOperationException("Synapse upload not implemented yet");
         }
 
