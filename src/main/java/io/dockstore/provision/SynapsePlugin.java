@@ -16,16 +16,24 @@
 package io.dockstore.provision;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.sagebionetworks.client.SynapseClient;
 import org.sagebionetworks.client.SynapseClientImpl;
+import org.sagebionetworks.repo.model.file.FileHandleAssociateType;
+import org.sagebionetworks.repo.model.file.FileHandleAssociation;
+import org.sagebionetworks.repo.model.file.FileHandleAssociationProvider;
 import ro.fortsoft.pf4j.Extension;
 import ro.fortsoft.pf4j.Plugin;
 import ro.fortsoft.pf4j.PluginWrapper;
@@ -72,9 +80,23 @@ public class SynapsePlugin extends Plugin {
                 String synapseKey = config.get("synapse-api-key");
                 String synapseUserName = config.get("synapse-user-name");
                 synapseClient.setApiKey(synapseKey);
-                synapseClient.setUserName(synapseUserName);
+                synapseClient.setUsername(synapseUserName);
                 // TODO: implement listener and show progress
-                synapseClient.downloadFromFileEntityCurrentVersion(destination.toFile().toString(), new File(sourcePath));
+                // ambiguous how to reference synapse files, rip off these kinds of headers
+                if (sourcePath.startsWith("syn://syn")){
+                    sourcePath = sourcePath.substring("syn://syn".length());
+                }
+                if (sourcePath.startsWith("syn://")){
+                    sourcePath = sourcePath.substring("syn://".length());
+                }
+                // FileHandleAssociation assoc = new FileHandleAssociation();
+                // assoc.setFileHandleId(sourcePath);
+                // assoc.setAssociateObjectId(sourcePath);
+                // assoc.setAssociateObjectType(FileHandleAssociateType.FileEntity);
+                // doesn't work synapseClient.downloadFile(assoc, destination.toFile());
+
+                // the following method is deprecated but the replacement doesn't seem to work
+                synapseClient.downloadFromFileEntityCurrentVersion(sourcePath, destination.toFile());
                 return true;
             } catch (Exception e) {
                 System.err.println(e.getMessage());
@@ -88,6 +110,5 @@ public class SynapsePlugin extends Plugin {
         }
 
     }
-
 }
 
