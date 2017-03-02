@@ -52,3 +52,15 @@ Resolved '/tmp/1488401341483-0/temp7036304455702546523.cwl' to 'file:///tmp/1488
 
 ```
 
+## Configuration                                                                                                                                                                                                    
+                                                                                                                                                                                                                    
+This plugin gets configuration information from the following structure in ~/.dockstore/config                                                                                                                      
+                                                                                                                                                                                                                    
+```                                                                                                                                                                                                                 
+[dockstore-file-synapse-plugin]                                                                                                                                                                                     
+synapse-api-key =                                                                                                   
+synapse-user-name =                                                                                                                                                                                        
+```                
+
+Browse to your profile on https://www.synapse.org and click on "Show API Key" in order to get your API key
+
