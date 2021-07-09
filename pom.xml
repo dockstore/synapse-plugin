@@ -45,9 +45,16 @@
             </snapshots>
         </repository>
         <repository>
-            <id>sagebionetworks</id>
-            <name>sagebionetworks-releases</name>
-            <url>http://sagebionetworks.artifactoryonline.com/sagebionetworks/libs-releases-local</url>
+            <id>sagebionetworks-releases-local</id>
+            <name>sagebionetworks-releases-local</name>
+            <url>https://sagebionetworks.jfrog.io/sagebionetworks/libs-releases-local
+            </url>
+        </repository>
+        <repository>
+            <id>sagebionetworks-ext</id>
+            <name>sagebionetworks-releases-ext</name>
+            <url>https://sagebionetworks.jfrog.io/sagebionetworks/ext-releases-local
+            </url>
         </repository>
     </repositories>
 
@@ -194,7 +201,7 @@
         <dependency>
             <groupId>io.dockstore</groupId>
             <artifactId>dockstore-file-plugin-parent</artifactId>
-            <version>1.2.0-alpha.3</version>
+            <version>1.6.0</version>
             <!-- !!! VERY IMPORTANT -->
             <scope>provided</scope>
         </dependency>
@@ -218,7 +225,7 @@
         <dependency>
             <groupId>org.sagebionetworks</groupId>
             <artifactId>synapseJavaClient</artifactId>
-            <version>171.0</version>
+            <version>364.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>

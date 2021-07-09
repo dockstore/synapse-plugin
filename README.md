@@ -58,9 +58,8 @@ This plugin gets configuration information from the following structure in ~/.do
                                                                                                                                                                                                                     
 ```                                                                                                                                                                                                                 
 [dockstore-file-synapse-plugin]                                                                                                                                                                                     
-synapse-api-key =                                                                                                   
-synapse-user-name =                                                                                                                                                                                        
+synapse-personal-access-token =                                                                                                                                                                                        
 ```                
 
-Browse to your profile on https://www.synapse.org and click on "Show API Key" in order to get your API key
-
+Browse to your profile on https://www.synapse.org and click on "Manage Personal Access Tokens" to generate an access token with "View" and "Download" permissions if you do not already have one.
+For more information, read this [synapse doc](https://help.synapse.org/docs/Managing-Your-Account.2055405596.html#ManagingYourAccount-PersonalAccessTokens).
